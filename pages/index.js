@@ -47,16 +47,17 @@ export default function Home() {
       <Head>
         <title>Hello</title>
         <meta name="keywords" content="web,material" />
+        <link rel="icon" href="/sample-logo.jpeg"></link>
       </Head>
       <div className={classes.mainTest}>
         <List className={classes.root}>
           {arr.map((item) => {
             return (
-              <Link href="/article">
-                <ListItem key={`${item}`}>
+              <ListItem key={item}>
+                <Link href="/article">
                   <ArticleModel />
-                </ListItem>
-              </Link>
+                </Link>
+              </ListItem>
             );
           })}
         </List>

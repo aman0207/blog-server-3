@@ -22,31 +22,16 @@ import { Brightness4Sharp, Brightness7Sharp } from "@material-ui/icons";
 import MenuButtonGrp from "./MenuButtonGrp";
 
 const useStyles = makeStyles((theme) => ({
-  lightTheme: {
-    backgroundColor: blueGrey[300],
-  },
-  darkTheme: {
-    backgroundColor: blueGrey[900],
-  },
   margin: {
     margin: theme.spacing(1),
     color: "#ffd73a",
   },
-  alignLeft: {
-    alignItems: "right",
-  },
   flexFlowColumn: {
+    display: "flex",
     flexFlow: "column",
   },
   blackBckgrnd: {
     backgroundColor: "black",
-  },
-  whiteIconColor: {
-    //color: "white",
-    color: "#ffd73a",
-  },
-  blackIconColor: {
-    color: "black",
   },
 }));
 
@@ -61,22 +46,22 @@ export const Nav = ({ changeTheme, darkMode }) => {
     <AppBar position={"static"} className={classes.blackBckgrnd}>
       <Toolbar className={classes.flexFlowColumn}>
         <Link href="/">
-          <Image
-            src="/sample-logo.jpeg"
-            alt="Image"
-            width={200}
-            height={100}
-            className={classes.margin}
-          />
+          <div>
+            <Image
+              src="/sample-logo.jpeg"
+              alt="Image"
+              width={200}
+              height={100}
+            />
+          </div>
         </Link>
+
         {isMatch ? (
-          <MenuButtonGrp />
+          <MenuButtonGrp changeTheme={changeTheme} darkMode={darkMode} />
         ) : (
-          <div className={classes.alignLeft}>
+          <div>
             <Link href="/">
-              <Button size="large" className={classes.margin}>
-                Home
-              </Button>
+              <Button className={classes.margin}>Home</Button>
             </Link>
             <Link href="/">
               <Button size="large" className={classes.margin}>
@@ -98,11 +83,16 @@ export const Nav = ({ changeTheme, darkMode }) => {
                 Book
               </Button>
             </Link>
+            <Link href="/textEditor">
+              <Button size="large" className={classes.margin}>
+                Text Editor
+              </Button>
+            </Link>
             {/* <SplitButton /> */}
 
             <IconButton
               onClick={() => changeTheme(!darkMode)}
-              className={classes.whiteIconColor}
+              className={classes.margin}
               title="Toggle Light/Dark Theme"
             >
               {darkMode ? (

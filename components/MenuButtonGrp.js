@@ -4,6 +4,7 @@ import {
   AccordionSummary,
   Button,
   ButtonGroup,
+  IconButton,
   InputLabel,
   makeStyles,
   Select,
@@ -12,6 +13,7 @@ import {
 import Link from "next/link";
 import { useState } from "react";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { Brightness4Sharp, Brightness7Sharp } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MenuButtonGrp = () => {
+const MenuButtonGrp = ({ changeTheme, darkMode }) => {
   const [expanded, setExpanded] = useState(false);
   const classes = useStyles();
   return (
@@ -81,6 +83,22 @@ const MenuButtonGrp = () => {
             Book
           </Button>
         </Link>
+        <Link href="/textEditor">
+          <Button size="large" className={classes.margin}>
+            Text Editor
+          </Button>
+        </Link>
+        <IconButton
+          onClick={() => changeTheme(!darkMode)}
+          className={classes.margin}
+          title="Toggle Light/Dark Theme"
+        >
+          {darkMode ? (
+            <Brightness4Sharp fontSize="large" />
+          ) : (
+            <Brightness7Sharp fontSize="large" />
+          )}
+        </IconButton>
       </AccordionDetails>
     </Accordion>
   );
