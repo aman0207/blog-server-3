@@ -11,6 +11,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import Head from "next/head";
+import Link from "next/link";
 import { ArticleModel } from "../components/ArticleModel";
 //import { styled } from "@material-ui/core/styles";
 import testStyle from "../styles/Home.module.css";
@@ -51,9 +52,11 @@ export default function Home() {
         <List className={classes.root}>
           {arr.map((item) => {
             return (
-              <ListItem key={`${item}`}>
-                <ArticleModel />
-              </ListItem>
+              <Link href="/article">
+                <ListItem key={`${item}`}>
+                  <ArticleModel />
+                </ListItem>
+              </Link>
             );
           })}
         </List>

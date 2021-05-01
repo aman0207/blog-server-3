@@ -29,7 +29,11 @@ export const ArticleModel = () => {
       <Card className={classes.root}>
         <CardHeader
           avatar={
-            <Avatar aria-label="recipe" className={classes.avatar}>
+            <Avatar
+              aria-label="recipe"
+              className={classes.avatar}
+              title="Shikhar"
+            >
               S
             </Avatar>
           }
