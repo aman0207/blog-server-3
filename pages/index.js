@@ -1,47 +1,34 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  List,
-  ListItem,
-  ListItemText,
-  makeStyles,
-  Paper,
-  Typography,
-} from "@material-ui/core";
+// App components.
+import { ArticleModel } from "../components/ArticleModel";
+
+// NextJS components.
 import Head from "next/head";
 import Link from "next/link";
-import { ArticleModel } from "../components/ArticleModel";
-//import { styled } from "@material-ui/core/styles";
-import testStyle from "../styles/Home.module.css";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: "100%",
-    maxWidth: "36ch",
-    backgroundColor: theme.palette.background.paper,
-    display: "flex",
-    flexFlow: "column nowrap",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inline: {
-    display: "inline",
-  },
-  mainTest: {
-    backgroundColor: theme.palette.background.paper,
-    flex: "1",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-}));
+// Material-UI components.
+import Grid from "@material-ui/core/Grid";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+
+// dummy information for (all) the Article Cards.
+// equivalent function must exist to fetch articles information.
+function getArticleInfo() {
+  return {
+    id: "1",
+    image: "/images/sample1.jpg",
+    title: "Benefits of Repetion",
+    summary:
+      "This impressive paella is a perfect party dish and a fun meal to cook together with your guests. Add 1 cup of frozen peas along with the mussels, if you like.",
+    author: "Shikhar",
+    updated: "4th Jul, 21",
+    // imageName : "sea horizon"  // serves as 'alt' property value for card-media.
+  };
+}
 
 export default function Home() {
-  const classes = useStyles();
   const arr = [1, 2, 3, 4, 5];
+  const articleInfo = getArticleInfo();
+
   return (
     <>
       <Head>
@@ -49,19 +36,27 @@ export default function Home() {
         <meta name="keywords" content="web,material" />
         <link rel="icon" href="/sample-logo.jpeg"></link>
       </Head>
-      <div className={classes.mainTest}>
-        <List className={classes.root}>
-          {arr.map((item) => {
-            return (
-              <ListItem key={item}>
-                <Link href="/article">
-                  <ArticleModel />
-                </Link>
-              </ListItem>
-            );
-          })}
-        </List>
-      </div>
+      <Grid container spacing={0}>
+        {arr.map((item) => {
+          return (
+            <Grid item xs={12} sm={6} md={4}>
+              <List>
+                <ListItem key={item}>
+                  <Link href="/article">
+                    <ArticleModel
+                      title={articleInfo.title}
+                      summary={articleInfo.summary}
+                      image={articleInfo.image}
+                      author={articleInfo.author}
+                      updated={articleInfo.updated}
+                    />
+                  </Link>
+                </ListItem>
+              </List>
+            </Grid>
+          );
+        })}
+      </Grid>
     </>
   );
 }

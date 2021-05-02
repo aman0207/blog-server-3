@@ -1,58 +1,44 @@
-import {
-  Avatar,
-  Card,
-  CardContent,
-  CardHeader,
-  CardMedia,
-  makeStyles,
-  Typography,
-} from "@material-ui/core";
-import { red } from "@material-ui/core/colors";
+import "/styles/ArticleModel.module.css";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 360,
-  },
-  media: {
-    height: 0,
-    paddingTop: "56.25%", // 16:9
-  },
-  avatar: {
-    backgroundColor: red[500],
-  },
-}));
+// Material-UI components.
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
 
-export const ArticleModel = () => {
-  const classes = useStyles();
+export const ArticleModel = (props) => {
+  const image = props.image;
+  const title = props.title;
+  const summary = props.summary;
+  const author = props.author;
+  const dateUpdated = props.updated;
+  // const imageName = props.imageName;  // serves as 'alt' property value for card-media.
+
   return (
-    <div>
-      <Card className={classes.root}>
-        <CardHeader
-          avatar={
-            <Avatar
-              aria-label="recipe"
-              className={classes.avatar}
-              title="Shikhar"
-            >
-              S
-            </Avatar>
-          }
-          title="Benefits of Repetion"
-          subheader="4th July, 2021"
-        />
+    <Card>
+      <CardActionArea>
         <CardMedia
-          className={classes.media}
-          title="Image"
-          image="/sample1.jpg"
+          component="img"
+          alt="Card Image"
+          // alt={imageName}
+          image={image}
+          title={title}
+          height="200vh"
         />
         <CardContent>
-          <Typography>
-            This impressive paella is a perfect party dish and a fun meal to
-            cook together with your guests. Add 1 cup of frozen peas along with
-            the mussels, if you like.
+          <Typography component="h4" variant="h4">
+            {title}
+          </Typography>
+          <Typography component="p" variant="body2">
+            {dateUpdated} by {author}
+          </Typography>
+
+          <Typography component="p" variant="body1" className="mildSpacingAtTop">
+            {summary}
           </Typography>
         </CardContent>
-      </Card>
-    </div>
+      </CardActionArea>
+    </Card>
   );
 };
