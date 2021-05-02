@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Nav = ({ changeTheme, darkMode }) => {
+const Nav = ({ changeTheme, darkMode }) => {
   const currentTheme = useTheme();
   const isMatch = useMediaQuery(currentTheme.breakpoints.down("sm"));
 
@@ -88,6 +88,11 @@ export const Nav = ({ changeTheme, darkMode }) => {
                 Text Editor
               </Button>
             </Link>
+            <Link href="/textViewer">
+              <Button size="large" className={classes.margin}>
+                Text Viewer
+              </Button>
+            </Link>
             {/* <SplitButton /> */}
 
             <IconButton
@@ -108,3 +113,5 @@ export const Nav = ({ changeTheme, darkMode }) => {
     </AppBar>
   );
 };
+
+export default Nav;

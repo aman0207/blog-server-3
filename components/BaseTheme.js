@@ -1,16 +1,25 @@
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { useState } from "react";
-import { Nav } from "./Nav";
+//import { Nav } from "./Nav";
+import dynamic from "next/dynamic";
+import { white } from "@material-ui/core/colors";
+const Nav = dynamic(() => import("./Nav"), {
+  ssr: false,
+});
 
 const BaseTheme = ({ children }) => {
   const [darkMode, setdarkMode] = useState(false);
-  const theme = createMuiTheme({
+  const darkTheme = createMuiTheme({
     palette: {
-      type: darkMode ? "dark" : "light",
+      type: "dark",
+      primary: white,
     },
   });
+
+  const lightTheme = createMuiTheme({});
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <Nav changeTheme={setdarkMode} darkMode={darkMode} />
       {children}
     </ThemeProvider>

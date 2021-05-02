@@ -1,8 +1,29 @@
-import { Container } from "@material-ui/core";
+import { Container, makeStyles, Paper } from "@material-ui/core";
+import { Height, SignalWifi1BarLockSharp } from "@material-ui/icons";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 import { useCallback, useState, useEffect } from "react";
-import testStyles from "../styles/TestTextEditor.module.css";
+
+const useStyles = makeStyles((theme) => ({
+  blogContainer: {
+    display: "flex",
+    flexFlow: "column",
+    //justifyContent: "center",
+    minHeight: "6in",
+    paddingTop: "4%",
+    //color: theme.palette.type === "dark" ? "white" : "black",
+    alignItems: "center",
+  },
+  whiteBGColor: {
+    backgroundColor: "#f9f9f9",
+    //minHeight: "4in",
+    //marginLeft: "5%",
+    //marginRight: "5%",
+    display: "flex",
+    flexFlow: "column",
+    maxWidth: "70%",
+  },
+}));
 
 const TOOLBAR_OPTIONS = [
   [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -17,6 +38,7 @@ const TOOLBAR_OPTIONS = [
 ];
 
 const TestTextEditor = () => {
+  const styles = useStyles();
   const [quill, setQuill] = useState();
   const [data, setData] = useState("");
 
@@ -26,9 +48,9 @@ const TestTextEditor = () => {
     //console.log("needed value : " + value[value.length - 1]);
     console.log("needed value : " + JSON.stringify(dataTesting));
     var td = dataTesting.ops[0].insert;
-    console.log("needed value : " + td);
+    console.log("needed value TD: " + td);
     console.log("TYPEOF td : " + typeof td);
-    if (td.includes("\n")) {
+    if (typeof td === "string" && td.includes("\n")) {
       console.log("TRUE");
       var tdd = td.replaceAll("\n", "<br />");
       console.log("TDD : " + tdd);
@@ -66,11 +88,11 @@ const TestTextEditor = () => {
   }, []);
 
   return (
-    <Container>
-      <div id="container" ref={wrapperRef}></div>
+    <Paper className={styles.blogContainer}>
+      <div ref={wrapperRef} className={styles.whiteBGColor}></div>
       <div>Typed : {data}</div>
-      <td dangerouslySetInnerHTML={{ __html: data }} />
-    </Container>
+      <div dangerouslySetInnerHTML={{ __html: data }} />
+    </Paper>
   );
 };
 export default TestTextEditor;
