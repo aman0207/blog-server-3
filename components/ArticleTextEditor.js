@@ -37,7 +37,7 @@ const TOOLBAR_OPTIONS = [
   ["clean"],
 ];
 
-const TestTextEditor = ({ handleInputData }) => {
+const ArticleTextEditor = () => {
   const styles = useStyles();
   const [quill, setQuill] = useState();
   const [data, setData] = useState("");
@@ -58,7 +58,6 @@ const TestTextEditor = ({ handleInputData }) => {
 
     //setData(data.concat(dataTesting.ops[0].insert));
     setData(tdd);
-    handleInputData(dataTesting);
   };
   useEffect(() => {
     if (quill == null) return;
@@ -96,4 +95,4 @@ const TestTextEditor = ({ handleInputData }) => {
     </Paper>
   );
 };
-export default TestTextEditor;
+export default ArticleTextEditor;
