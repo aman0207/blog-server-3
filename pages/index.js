@@ -9,6 +9,7 @@ import Link from "next/link";
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import { Paper } from "@material-ui/core";
 
 // dummy information for (all) the Article Cards.
 // equivalent function must exist to fetch articles information.
@@ -36,27 +37,29 @@ export default function Home() {
         <meta name="keywords" content="web,material" />
         <link rel="icon" href="/sample-logo.jpeg"></link>
       </Head>
-      <Grid container spacing={0}>
-        {arr.map((item) => {
-          return (
-            <Grid item xs={12} sm={6} md={4}>
-              <List>
-                <ListItem key={item}>
-                  <Link href="/article">
-                    <ArticleModel
-                      title={articleInfo.title}
-                      summary={articleInfo.summary}
-                      image={articleInfo.image}
-                      author={articleInfo.author}
-                      updated={articleInfo.updated}
-                    />
-                  </Link>
-                </ListItem>
-              </List>
-            </Grid>
-          );
-        })}
-      </Grid>
+      <Paper>
+        <Grid container spacing={0}>
+          {arr.map((item) => {
+            return (
+              <Grid item xs={12} sm={6} md={4} key={item}>
+                <List>
+                  <ListItem key={item}>
+                    <Link href="/article">
+                      <ArticleModel
+                        title={articleInfo.title}
+                        summary={articleInfo.summary}
+                        image={articleInfo.image}
+                        author={articleInfo.author}
+                        updated={articleInfo.updated}
+                      />
+                    </Link>
+                  </ListItem>
+                </List>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Paper>
     </>
   );
 }

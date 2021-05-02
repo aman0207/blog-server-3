@@ -57,6 +57,7 @@ const TestTextEditor = () => {
     const q = new Quill(editor, {
       theme: "snow",
       modules: { toolbar: TOOLBAR_OPTIONS },
+      //modules: { toolbar: null },
     });
     setQuill(q);
     return () => {

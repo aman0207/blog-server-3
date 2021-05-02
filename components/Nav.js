@@ -96,9 +96,9 @@ export const Nav = ({ changeTheme, darkMode }) => {
               title="Toggle Light/Dark Theme"
             >
               {darkMode ? (
-                <Brightness4Sharp fontSize="large" />
+                <Brightness4Sharp fontSize="default" />
               ) : (
-                <Brightness7Sharp fontSize="large" />
+                <Brightness7Sharp fontSize="default" />
               )}
             </IconButton>
             {/* <MenuButtonGrp /> */}
