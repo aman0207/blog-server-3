@@ -14,7 +14,7 @@ const textEditor = () => {
       method: "POST",
       headers: { "content-Type": "application/json" },
       body: JSON.stringify({
-        title: `Title11 ${new Date().getDate()}`,
+        title: `Title11 ${new Date()}`,
         body: data,
       }),
     };
