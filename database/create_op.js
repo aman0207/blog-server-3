@@ -15,4 +15,4 @@ const createNewRecord = async (data) => {
   }
 };
 
-module.exports = createNewRecord;
+export { createNewRecord };

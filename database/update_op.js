@@ -4,7 +4,7 @@ const logger = require("../utils/logger");
 // 'ID' is unique identifier value via which record is searched.
 // 'newData' are the properties (key-value maps) which would be updated in the record.
 // returns 'undefined' on failure so that it can be gracefully handled by frontend.
-exports.updateSingleRecordByID = async (model, ID, newData) => {
+const updateSingleRecordByID = async (model, ID, newData) => {
   try {
     // option { new: true } returns the updatedRecord values rather that old record values.
     const updatedRecord = await model.findByIdAndUpdate(ID, newData, { new: true });
@@ -20,7 +20,7 @@ exports.updateSingleRecordByID = async (model, ID, newData) => {
 // 'searchFilter' is key-value mapping based on which records are to be searched.
 // 'newData' are the properties (key-value maps) which would be updated in the record.
 // returns 'undefined' on failure so that it can be gracefully handled by frontend.
-exports.updateSingleRecord = async (model, searchFilter, newData) => {
+const updateSingleRecord = async (model, searchFilter, newData) => {
   try {
     // option { new: true } returns the updatedRecord values rather that old record values.
     const updatedRecord = await model.findOneAndUpdate(searchFilter, newData, { new: true });
@@ -36,7 +36,7 @@ exports.updateSingleRecord = async (model, searchFilter, newData) => {
 // 'searchFilter' is key-value mapping based on which records are to be searched.
 // 'newData' are the properties (key-value maps) which would be updated in the record.
 // returns 'undefined' on failure so that it can be gracefully handled by frontend.
-exports.updateMultipleRecords = async (model, searchFilter, newData) => {
+const updateMultipleRecords = async (model, searchFilter, newData) => {
   try {
     // option { new: true } returns the updatedRecord values rather that old record values.
     const updatedRecord = await model.updateMany(searchFilter, newData, { new: true });
@@ -47,3 +47,5 @@ exports.updateMultipleRecords = async (model, searchFilter, newData) => {
     return undefined;
   }
 };
+
+export { updateSingleRecordByID, updateSingleRecord, updateMultipleRecords };

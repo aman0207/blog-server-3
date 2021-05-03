@@ -47,4 +47,4 @@ const logConfiguration = {
 const logger = createLogger(logConfiguration);
 logger.info("Winston has started logging");
 
-module.exports = logger;
+export default logger;

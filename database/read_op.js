@@ -4,7 +4,7 @@ const logger = require("../utils/logger");
 // 'ID' is unique identifier value via which record is searched.
 // 'projection' is (optional) list of the fields of the records that is to be fetched.
 // returns 'undefined' on failure so that it can be gracefully handled by frontend.
-exports.fetchSingleRecordByID = async (model, ID, projection = "") => {
+const fetchSingleRecordByID = async (model, ID, projection = "") => {
   try {
     const record = await model.findById(ID, projection);
     logger.info("Record has been fetched.");
@@ -19,7 +19,7 @@ exports.fetchSingleRecordByID = async (model, ID, projection = "") => {
 // 'searchFilter' is key-value mapping based on which records are to be searched.
 // 'projection' is (optional) list of the fields of the records that is to be fetched.
 // returns 'undefined' on failure so that it can be gracefully handled by frontend.
-exports.fetchSingleRecord = async (model, searchFilter, projection = "") => {
+const fetchSingleRecord = async (model, searchFilter, projection = "") => {
   try {
     const record = await model.findOne(searchFilter, projection);
     logger.info("Records have been fetched.");
@@ -34,7 +34,7 @@ exports.fetchSingleRecord = async (model, searchFilter, projection = "") => {
 // 'searchFilter' is key-value mapping based on which records are to be searched.
 // 'projection' is (optional) list of the fields of the records that is to be fetched.
 // returns 'undefined' on failure so that it can be gracefully handled by frontend.
-exports.fetchMultipleRecords = async (model, searchFilter, projection = "") => {
+const fetchMultipleRecords = async (model, searchFilter, projection = "") => {
   try {
     const records = await model.find(searchFilter, projection);
     logger.info("All records has been fetched.");
@@ -44,3 +44,5 @@ exports.fetchMultipleRecords = async (model, searchFilter, projection = "") => {
     return undefined;
   }
 };
+
+export { fetchSingleRecordByID, fetchSingleRecord, fetchMultipleRecords };
