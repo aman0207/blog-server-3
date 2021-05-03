@@ -1,7 +1,13 @@
-import '../styles/globals.css'
+import BaseTheme from "../components/BaseTheme";
+import { Nav } from "../components/Nav";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <BaseTheme>
+      <Component {...pageProps} />
+    </BaseTheme>
+  );
 }
 
-export default MyApp
+export default MyApp;

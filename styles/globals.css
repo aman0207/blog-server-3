@@ -14,3 +14,39 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.ql-container.ql-snow {
+  background-color: #f9f9f9;
+  color: black;
+  /*min-width: 6in;*/
+  min-height: 4in;
+}
+
+.ql-container.ql-snow.ql-disabled {
+  background-color: #f9f9f9;
+  color: black;
+  min-width: 6in;
+  min-height: 4in;
+}
+
+/* .ql-editor {
+  background-color: #f9f9f9;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  color: black;
+}
+
+.ql-container.ql-snow.ql-disabled {
+  border: none;
+  height: 11in;
+  width: 100%;
+} 
+
+.externalContainer {
+  width: 8.5in;
+  min-height: 11in;
+  margin: 1rem;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+}
+*/
