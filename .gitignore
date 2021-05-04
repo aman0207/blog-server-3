@@ -15,6 +15,13 @@
 # production
 /build
 
+# logs
+/logs
+
+# environment variable files
+.env
+.env.*
+
 # misc
 .DS_Store
 *.pem
