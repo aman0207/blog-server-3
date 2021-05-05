@@ -93,6 +93,11 @@ const Nav = ({ changeTheme, darkMode }) => {
                 Text Viewer
               </Button>
             </Link>
+            <Link href="/newArticle">
+              <Button size="large" className={classes.margin}>
+                New Article
+              </Button>
+            </Link>
             {/* <SplitButton /> */}
 
             <IconButton
