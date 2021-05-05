@@ -42,6 +42,13 @@ const TestTextEditor = ({ handleInputData }) => {
   const [quill, setQuill] = useState();
   const [data, setData] = useState("");
 
+  const editorDivClick = () => {
+    console.log("EDITOR DIV CLICKED");
+    if (quill != null) {
+      quill.focus();
+    }
+  };
+
   const handleData = (value, dataTesting) => {
     console.log("delta value : " + JSON.stringify(value.ops[0]));
 
@@ -57,7 +64,7 @@ const TestTextEditor = ({ handleInputData }) => {
     }
 
     //setData(data.concat(dataTesting.ops[0].insert));
-    setData(tdd);
+    //setData(tdd);
     handleInputData(dataTesting);
   };
   useEffect(() => {
@@ -65,6 +72,8 @@ const TestTextEditor = ({ handleInputData }) => {
     const handler = (delta, oldDelta, source) => {
       if (source !== "user") return;
       handleData(delta, quill.getContents());
+      console.log("QUILL ROOT  : ", quill?.root.innerHTML);
+      setData(quill?.root.innerHTML);
     };
     quill.on("text-change", handler);
     return () => {
@@ -90,7 +99,11 @@ const TestTextEditor = ({ handleInputData }) => {
 
   return (
     <Paper className={styles.blogContainer}>
-      <div ref={wrapperRef} className={styles.whiteBGColor}></div>
+      <div
+        ref={wrapperRef}
+        className={styles.whiteBGColor}
+        onClick={editorDivClick}
+      ></div>
       <div>Typed : {data}</div>
       <div dangerouslySetInnerHTML={{ __html: data }} />
     </Paper>

@@ -63,7 +63,7 @@ const Nav = ({ changeTheme, darkMode }) => {
             <Link href="/">
               <Button className={classes.margin}>Home</Button>
             </Link>
-            <Link href="/">
+            <Link href="/test">
               <Button size="large" className={classes.margin}>
                 Short Stories
               </Button>
