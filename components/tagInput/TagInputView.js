@@ -10,7 +10,7 @@ import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
   mildTopMargin: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(2),
     marginBottom: theme.spacing(1),
   },
   centeredContent: {
@@ -22,11 +22,9 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(0.3),
     },
   },
-  oneFourthWidth: {
-    width: "25%",
-  },
-  nominalAllSideMargin: {
-    margin: theme.spacing(1),
+  almostFullWidth: {
+    width: "90%",
+    marginTop: theme.spacing(0.5),
   },
   nominalVerticalMargin: {
     marginTop: theme.spacing(1),
@@ -50,6 +48,26 @@ const TagInputViewComponent = (props) => {
       <div className={style.mildTopMargin}>
         <InputLabel>{tagFieldName}</InputLabel>
       </div>
+      <div className={style.nominalVerticalMargin}>
+          <TextField
+            className={style.almostFullWidth}
+            size="small"
+            name="newTag"
+            variant="outlined"
+            label="New Tag Name"
+            value={value.newTagName}
+            onChange={method.updateNewTagInputValue}
+            error={(value.isNewTagNameValid)? false : true}
+            helperText={(value.isNewTagNameValid)? '' : 'Tag Exists'}
+          />
+
+        <Button
+          color="secondary"
+          onClick={method.createNewTag}
+        >
+          Add
+        </Button>
+      </div>
       <div className={style.centeredContent}>
         {value.existingTags.map((tag) => (
           <Chip
@@ -63,23 +81,6 @@ const TagInputViewComponent = (props) => {
           />
         ))}
       </div>
-          <TextField
-            className={[style.oneFourthWidth]}
-            name="newTag"
-            label="Add New Tag"
-            value={value.newTagName}
-            onChange={method.updateNewTagInputValue}
-            error={(value.isNewTagNameValid)? false : true}
-            helperText={(value.isNewTagNameValid)? '' : 'Tag Exists'}
-          />
-
-        <Button
-          className={style.nominalAllSideMargin}
-          color="secondary"
-          onClick={method.createNewTag}
-        >
-          Add
-        </Button>
     </React.Fragment>
   );
 };

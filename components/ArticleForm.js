@@ -41,7 +41,15 @@ const useStyles = makeStyles((theme) => ({
   allSideMildMargin: {
     display: "block",
     margin: theme.spacing(1),
-  }
+  },
+  mildTopMargin: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(1),
+  },
+  nominalVerticalMargin: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
 }));
 
 export default function ArticleForm() {
@@ -81,9 +89,12 @@ export default function ArticleForm() {
         <TextField
           name="title"
           label="Title"
+          size="small"
+          variant="outlined"
           value={title}
           onChange={updateTextField}
           fullWidth
+          className={style.nominalVerticalMargin}
         />
 
         {/* AUTHOR OF THE ARTICLE */}
@@ -92,34 +103,49 @@ export default function ArticleForm() {
         <TextField
           name="author"
           label="Author"
+          size="small"
+          variant="outlined"
           fullWidth
           defaultValue={author}
           disabled={ifNoLogin()}
+          className={style.nominalVerticalMargin}
         />
 
         {/* CATEGORY FOR THE ARTICLE */}
         <TextField
           name="category"
           label="Category"
+          size="small"
+          variant="outlined"
           value={category}
           onChange={updateTextField}
           fullWidth
+          className={style.nominalVerticalMargin}
         />
+
+        {/* BODY FOR THE ARTICLE */}
 
         {/* TAGS FOR THE ARTICLE */}
         <TagInput
           tagFieldName="Article Tags"
           allTags={getListOfTags()}
-          tagSizes="medium"
+          tagSizes="small"
           formSyncFunc={setTags}
         />
 
-        {/* BODY FOR THE ARTICLE */}
+        {/* NOTICE OR OTHER ACKNOWLEDGEMENTS */}
+        <Typography variant="body2">
+          The above article will be created and saved as defined.
+          However, creating the article will not result in immediate publishing.
+          An article is only published on the website once the Administrator has reviewed it.
+          The author of the article will be informed via email or other means about its status.
+        </Typography>
 
         {/* SUBMIT BUTTON */}
         <Button
-          className={style.allSideMildMargin}
+          className={style.mildTopMargin}
           variant="contained"
+          size="small"
           color="primary"
           onClick={() => {
             console.info({
