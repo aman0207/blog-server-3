@@ -12,4 +12,15 @@ const getConfigFilePath = () => {
 //     };
 // }
 
-export { getConfigFilePath };
+const removeArrayElement = (array, element) => {
+  let newArray = [];
+
+  // populating new array.
+  array.forEach((arrayElement) => {
+    if (arrayElement !== element) newArray.push(arrayElement);
+  });
+
+  return newArray;
+};
+
+export { getConfigFilePath, removeArrayElement };
