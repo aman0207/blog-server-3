@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 
 // App components
 import TagInput from "../components/tagInput/TagInputView";
+import RichTextEditor from "../components/richTextEditor/RichTextEditor";
 
 // DUMMY TAGS
 function getListOfTags() {
@@ -59,6 +60,7 @@ export default function ArticleForm() {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState(getAuthorName());
   const [category, setCategory] = useState("");
+  const [articleContents, setArticleContents] = useState("");
   const [tags, setTags] = useState([]);
 
   function updateTextField(event) {
@@ -124,6 +126,10 @@ export default function ArticleForm() {
         />
 
         {/* BODY FOR THE ARTICLE */}
+        <RichTextEditor
+          editorFieldName="Article Contents"
+          formSyncFunc={setArticleContents}
+        />
 
         {/* TAGS FOR THE ARTICLE */}
         <TagInput
@@ -153,6 +159,7 @@ export default function ArticleForm() {
               author: author,
               category: category,
               tags: tags,
+              contents: articleContents,
               createdOn: new Date(),
               published: false,
             });
