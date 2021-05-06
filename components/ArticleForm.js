@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 // Material-UI components
 import Button from "@material-ui/core/Button";
+import makeStyles from "@material-ui/core/styles/makeStyles";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 
@@ -36,7 +37,16 @@ const FIELDS = {
   CATEGORY: "category",
 };
 
+const useStyles = makeStyles((theme) => ({
+  allSideMildMargin: {
+    display: "block",
+    margin: theme.spacing(1),
+  }
+}));
+
 export default function ArticleForm() {
+  const style = useStyles();
+
   // input field state controllers.
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState(getAuthorName());
@@ -108,6 +118,7 @@ export default function ArticleForm() {
 
         {/* SUBMIT BUTTON */}
         <Button
+          className={style.allSideMildMargin}
           variant="contained"
           color="primary"
           onClick={() => {
@@ -121,7 +132,7 @@ export default function ArticleForm() {
             });
           }}
         >
-          Submit
+          Create 
         </Button>
       </form>
     </React.Fragment>
