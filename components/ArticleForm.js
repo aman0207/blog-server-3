@@ -6,7 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 
 // App components
-import TagInput from "../components/TagInput";
+import TagInput from "../components/tagInput/TagInputView";
 
 // DUMMY TAGS
 function getListOfTags() {
@@ -101,7 +101,7 @@ export default function ArticleForm() {
           tagFieldName="Article Tags"
           allTags={getListOfTags()}
           tagSizes="medium"
-          controller={setTags}
+          formSyncFunc={setTags}
         />
 
         {/* BODY FOR THE ARTICLE */}
