@@ -1,5 +1,4 @@
-const logger = require("../utils/logger");
-
+import logger from "../../utils/logger";
 // 'data' is the object that is to be saved into the collection/table.
 // Collection/Table model is not required to be passed explicitly as...
 // 'data' would be a replica of some model itself.(Mongoose specific implementation)
