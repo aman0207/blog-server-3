@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import dynamic from "next/dynamic";
 // Material-UI components
 import Button from "@material-ui/core/Button";
 import makeStyles from "@material-ui/core/styles/makeStyles";
@@ -8,7 +8,13 @@ import Typography from "@material-ui/core/Typography";
 
 // App components
 import TagInput from "../components/tagInput/TagInputView";
-import RichTextEditor from "../components/richTextEditor/RichTextEditor";
+//import RichTextEditor from "../components/richTextEditor/RichTextEditor";
+const RichTextEditor = dynamic(
+  () => import("../components/richTextEditor/RichTextEditor"),
+  {
+    ssr: false,
+  }
+);
 
 // DUMMY TAGS
 function getListOfTags() {
@@ -86,7 +92,7 @@ export default function ArticleForm() {
     <React.Fragment>
       <Typography variant="h3">New Article</Typography>
 
-      <form autoComplete="off" >
+      <form autoComplete="off">
         {/* TITLE OF THE ARTICLE */}
         <TextField
           name="title"
@@ -141,10 +147,11 @@ export default function ArticleForm() {
 
         {/* NOTICE OR OTHER ACKNOWLEDGEMENTS */}
         <Typography variant="body2">
-          The above article will be created and saved as defined.
-          However, creating the article will not result in immediate publishing.
-          An article is only published on the website once the Administrator has reviewed it.
-          The author of the article will be informed via email or other means about its status.
+          The above article will be created and saved as defined. However,
+          creating the article will not result in immediate publishing. An
+          article is only published on the website once the Administrator has
+          reviewed it. The author of the article will be informed via email or
+          other means about its status.
         </Typography>
 
         {/* SUBMIT BUTTON */}
@@ -165,7 +172,7 @@ export default function ArticleForm() {
             });
           }}
         >
-          Create 
+          Create
         </Button>
       </form>
     </React.Fragment>
