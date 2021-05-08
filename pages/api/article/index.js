@@ -12,6 +12,7 @@ export default async function handler(req, resp) {
       try {
         const articles = await Article.find({});
         resp.status(200).json({ success: true, data: articles });
+        console.log(articles);
       } catch (error) {
         console.error(error);
         resp.status(400).json({ success: false });
