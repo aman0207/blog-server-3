@@ -63,11 +63,48 @@ export default function ArticleForm() {
   const style = useStyles();
 
   // input field state controllers.
-  const [title, setTitle] = useState("");
   const [author, setAuthor] = useState(getAuthorName());
-  const [category, setCategory] = useState("");
-  const [articleContents, setArticleContents] = useState("");
   const [tags, setTags] = useState([]);
+  const [articleBody, setArticleBody] = useState({});
+  const resetData = () => {
+    console.debug("Record Reset ");
+    setArticleBody({
+      title: "",
+      category: "",
+      body: "",
+    });
+    setTags([]);
+  };
+  async function storeRecord() {
+    let reqBodyToStore = articleBody;
+    reqBodyToStore = {
+      ...reqBodyToStore,
+      tags: tags,
+      status: "N",
+      createdOn: new Date(),
+      author: "TestUser",
+    };
+    console.info("RECORED TO STORE : ", reqBodyToStore);
+    const reqOptions = {
+      method: "POST",
+      headers: { "content-Type": "application/json" },
+      body: JSON.stringify(reqBodyToStore),
+    };
+    const resp = await fetch(
+      "http://localhost:3000/api/article/new",
+      reqOptions
+    );
+    const savedArticle = await resp.json();
+    console.debug("savedArticle : ", savedArticle);
+    resetData();
+  }
+
+  const assignArticleBody = (contents) => {
+    setArticleBody((prevState) => ({
+      ...prevState,
+      body: contents,
+    }));
+  };
 
   function updateTextField(event) {
     const fieldValue = event.target.value;
@@ -75,13 +112,25 @@ export default function ArticleForm() {
 
     switch (fieldName) {
       case FIELDS.TITLE:
-        setTitle(fieldValue);
+        //setTitle(fieldValue);
+        setArticleBody((prevState) => ({
+          ...prevState,
+          title: fieldValue,
+        }));
         break;
       case FIELDS.AUTHOR:
         setAuthor(fieldValue);
+        setArticleBody((prevState) => ({
+          ...prevState,
+          author: fieldValue,
+        }));
         break;
       case FIELDS.CATEGORY:
-        setCategory(fieldValue);
+        // setCategory(fieldValue);
+        setArticleBody((prevState) => ({
+          ...prevState,
+          category: fieldValue,
+        }));
         break;
       default:
         console.error("Invalid field input");
@@ -99,7 +148,7 @@ export default function ArticleForm() {
           label="Title"
           size="small"
           variant="outlined"
-          value={title}
+          value={articleBody.title}
           onChange={updateTextField}
           fullWidth
           className={style.nominalVerticalMargin}
@@ -125,7 +174,7 @@ export default function ArticleForm() {
           label="Category"
           size="small"
           variant="outlined"
-          value={category}
+          value={articleBody.category}
           onChange={updateTextField}
           fullWidth
           className={style.nominalVerticalMargin}
@@ -134,7 +183,8 @@ export default function ArticleForm() {
         {/* BODY FOR THE ARTICLE */}
         <RichTextEditor
           editorFieldName="Article Contents"
-          formSyncFunc={setArticleContents}
+          formSyncFunc={assignArticleBody}
+          editorDefaultData={articleBody.body}
         />
 
         {/* TAGS FOR THE ARTICLE */}
@@ -161,18 +211,22 @@ export default function ArticleForm() {
           size="small"
           color="primary"
           onClick={() => {
-            console.info({
-              title: title,
-              author: author,
-              category: category,
-              tags: tags,
-              contents: articleContents,
-              createdOn: new Date(),
-              published: false,
-            });
+            storeRecord();
           }}
         >
           Create
+        </Button>
+        {/*Reset Button */}
+        <Button
+          className={style.mildTopMargin}
+          variant="contained"
+          size="small"
+          color="primary"
+          onClick={() => {
+            resetData();
+          }}
+        >
+          Reset
         </Button>
       </form>
     </React.Fragment>

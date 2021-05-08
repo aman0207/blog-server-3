@@ -1,4 +1,5 @@
-const logger = require("../utils/logger");
+//const logger = require("../utils/logger");
+import logger from "../../utils/logger";
 
 // 'model' is the model of the collection for which READ op is performed.
 // 'ID' is unique identifier value via which record is searched.

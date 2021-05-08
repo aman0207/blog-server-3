@@ -18,6 +18,7 @@ export default async function requestHandler(request, response) {
     if (articleDetails)
       response.status(200).json({ success: true, data: articleDetails });
   } catch (error) {
+    console.error("NEW Req error ", error);
     response.status(503).json({ success: false, data: error });
   }
 }

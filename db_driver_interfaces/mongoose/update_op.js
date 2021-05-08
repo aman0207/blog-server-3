@@ -1,4 +1,4 @@
-const logger = require("../utils/logger");
+const logger = require("../../utils/logger");
 
 // 'model' is a MONGOOSE model of the collection on which UPDATE op is performed.
 // 'ID' is unique identifier value via which record is searched.
@@ -7,7 +7,9 @@ const logger = require("../utils/logger");
 const updateSingleRecordByID = async (model, ID, newData) => {
   try {
     // option { new: true } returns the updatedRecord values rather that old record values.
-    const updatedRecord = await model.findByIdAndUpdate(ID, newData, { new: true });
+    const updatedRecord = await model.findByIdAndUpdate(ID, newData, {
+      new: true,
+    });
     logger.info("Record has been updated.");
     return updatedRecord;
   } catch (error) {
@@ -23,7 +25,9 @@ const updateSingleRecordByID = async (model, ID, newData) => {
 const updateSingleRecord = async (model, searchFilter, newData) => {
   try {
     // option { new: true } returns the updatedRecord values rather that old record values.
-    const updatedRecord = await model.findOneAndUpdate(searchFilter, newData, { new: true });
+    const updatedRecord = await model.findOneAndUpdate(searchFilter, newData, {
+      new: true,
+    });
     logger.info("Record has been updated.");
     return updatedRecord;
   } catch (error) {
@@ -39,7 +43,9 @@ const updateSingleRecord = async (model, searchFilter, newData) => {
 const updateMultipleRecords = async (model, searchFilter, newData) => {
   try {
     // option { new: true } returns the updatedRecord values rather that old record values.
-    const updatedRecord = await model.updateMany(searchFilter, newData, { new: true });
+    const updatedRecord = await model.updateMany(searchFilter, newData, {
+      new: true,
+    });
     logger.info("All records have been updated.");
     return updatedRecord;
   } catch (error) {

@@ -17,7 +17,7 @@ const editorConfigurations = {};
 
 const RichTextEditorComponent = (props) => {
   const style = useStyles();
-  const { editorFieldName, formSyncFunc } = props;
+  const { editorFieldName, formSyncFunc, editorDefaultData } = props;
 
   return (
     <React.Fragment>
@@ -33,6 +33,7 @@ const RichTextEditorComponent = (props) => {
           const editorData = editor.getData();
           formSyncFunc(editorData);
         }}
+        data={editorDefaultData}
       />
     </React.Fragment>
   );
