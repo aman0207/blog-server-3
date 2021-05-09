@@ -1,12 +1,18 @@
 import Article from "../../../models/Article";
+import dbConnect from "../../../utils/dbConnect";
+import logger from "../../../utils/logger";
 import { REQUEST } from "../../../common/variables";
 import { fetchSingleRecordByID } from "../../../db_driver_interfaces/mongoose/read_op";
 import { updateSingleRecordByID } from "../../../db_driver_interfaces/mongoose/update_op";
-import dbConnect from "../../../utils/dbConnect";
+
+// Establishing database connection (ONLY if it isn't).
 dbConnect();
+
 // For fetching, updating, (rarely) deleting a specific Article based on its ID.
 export default async function requestHandler(request, response) {
   const id = request.query.id;
+  logger.debug("ID: " + id);
+
   const outputFields =
     "title author date category tags body createdOn updatedOn";
 
@@ -17,17 +23,39 @@ export default async function requestHandler(request, response) {
         id,
         outputFields
       );
-      if (articleDetails)
+      if (articleDetails) {
+        logger.info(
+          "[pages/api/article/[id].js, 'requestHandler()'] Article fetched."
+        );
+        logger.debug(articleDetails);
         response.status(200).json({ success: true, data: articleDetails });
-      else response.status(503).json({ success: false });
+      } else {
+        logger.error(
+          "[pages/api/article/[id].js, 'requestHandler()'] Article fetching failed."
+        );
+        response.status(503).json({ success: false });
+      }
       break;
+
     case REQUEST.UPDATE:
       const updates = request.body;
+      logger.debug("Request body: " + JSON.stringify(updates));
+
       const updatedArticle = await updateSingleRecordByID(Article, id, updates);
-      if (updatedArticle)
+      if (updatedArticle) {
+        logger.info(
+          "[pages/api/article/[id].js, 'requestHandler()'] Article updated."
+        );
+        logger.debug(updatedArticle);
         response.status(200).json({ success: true, data: updatedArticle });
-      else response.status(503).json({ success: false });
+      } else {
+        logger.error(
+          "[pages/api/article/[id].js, 'requestHandler()'] Article updating failed."
+        );
+        response.status(503).json({ success: false });
+      }
       break;
+
     default:
       response.status(400).json({ success: false });
   }

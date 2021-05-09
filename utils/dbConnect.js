@@ -10,7 +10,10 @@ const connection = {};
 
 async function dbConnect() {
   if (connection.isConnected) return;
-  logger.info("DB connection URL : " + process.env.MONGO_URL);
+  logger.debug(
+    "[utils/dbConnect.js, 'dbConnect()'] DB connection URL : " +
+      process.env.MONGO_URL
+  );
 
   const db = await mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -19,7 +22,12 @@ async function dbConnect() {
     useFindAndModify: false,
   });
   connection.isConnected = db.connections[0].readyState;
-  logger.info("DB isConnected : " + connection.isConnected);
+  logger.info(
+    "[utils/dbConnect.js, 'dbConnect()'] DB isConnected: " +
+      connection.isConnected
+      ? "true"
+      : "false"
+  );
 }
 
 export default dbConnect;

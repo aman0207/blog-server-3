@@ -6,10 +6,17 @@ import logger from "../../utils/logger";
 const createNewRecord = async (data) => {
   try {
     const result = await data.save();
-    logger.info("Record has been created.");
+    logger.info(
+      "[db_driver_interfaces/mongoose/create_op.js, 'createNewRecord()'] Record has been created."
+    );
+    logger.debug(result);
     return result;
   } catch (error) {
-    logger.error("Record creation has failed.\n" + error);
+    logger.error(
+      "[db_driver_interfaces/mongoose/create_op.js, 'createNewRecord()'] Record creation has failed.\n" +
+        error
+    );
+    logger.debug(error);
     return undefined;
   }
 };

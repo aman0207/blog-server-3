@@ -44,6 +44,6 @@ const logConfiguration = {
 
 // Instantiating Winston Logger.
 const logger = createLogger(logConfiguration);
-logger.info("Winston has started logging");
+logger.info("[utils/logger.js] Winston has started logging");
 
 export default logger;

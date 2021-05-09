@@ -6,10 +6,17 @@ import logger from "../../utils/logger";
 const deleteSingleRecordByID = async (model, ID) => {
   try {
     const result = await model.findByIdAndDelete(ID);
-    logger.info("Record has been deleted.");
+    logger.info(
+      "[db_driver_interfaces/mongoose/delete_op.js, 'deleteSingleRecordByID()'] Record has been deleted."
+    );
+    logger.debug(results);
     return result;
   } catch (error) {
-    logger.error("Record deletion has failed.\n" + error);
+    logger.error(
+      "[db_driver_interfaces/mongoose/delete_op.js, 'deleteSingleRecordByID()'] Record deletion has failed.\n" +
+        error
+    );
+    logger.debug(error);
     return undefined;
   }
 };
@@ -20,10 +27,17 @@ const deleteSingleRecordByID = async (model, ID) => {
 const deleteSingleRecord = async (model, searchFilter) => {
   try {
     const result = await model.deleteOne(searchFilter);
-    logger.info("Record has been deleted.");
+    logger.info(
+      "[db_driver_interfaces/mongoose/delete_op.js, 'deleteSingleRecord()'] Record has been deleted."
+    );
+    logger.debug(results);
     return result;
   } catch (error) {
-    logger.error("Record deletion has failed.\n" + error);
+    logger.error(
+      "[db_driver_interfaces/mongoose/delete_op.js, 'deleteSingleRecord()'] Record deletion has failed.\n" +
+        error
+    );
+    logger.debug(error);
     return undefined;
   }
 };
@@ -34,10 +48,16 @@ const deleteSingleRecord = async (model, searchFilter) => {
 const deleteMultipleRecords = async (model, searchFilter) => {
   try {
     const results = await model.deleteMany(searchFilter);
-    logger.info("All results has been deleted.");
+    logger.info(
+      "[db_driver_interfaces/mongoose/delete_op.js, 'deleteMany()'] All results has been deleted."
+    );
+    logger.debug(results);
     return results;
   } catch (error) {
-    logger.error("All results deletion failed.\n" + error);
+    logger.error(
+      "[delete_op.js, 'deleteMany()'] All results deletion failed.\n" + error
+    );
+    logger.debug(error);
     return undefined;
   }
 };

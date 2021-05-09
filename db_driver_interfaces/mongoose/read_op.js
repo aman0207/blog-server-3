@@ -7,10 +7,17 @@ import logger from "../../utils/logger";
 const fetchSingleRecordByID = async (model, ID, projection = "") => {
   try {
     const record = await model.findById(ID, projection);
-    logger.info("Record has been fetched.");
+    logger.info(
+      "[db_driver_interfaces/mongoose/read_op.js, 'fetchSingleRecordByID()'] Record has been fetched."
+    );
+    logger.debug(record);
     return record;
   } catch (error) {
-    logger.error("Fetching record has failed.\n" + error);
+    logger.error(
+      "[db_driver_interfaces/mongoose/read_op.js, 'fetchSingleRecordByID()'] Fetching record has failed.\n" +
+        error
+    );
+    logger.debug(error);
     return undefined;
   }
 };
@@ -22,10 +29,17 @@ const fetchSingleRecordByID = async (model, ID, projection = "") => {
 const fetchSingleRecord = async (model, searchFilter, projection = "") => {
   try {
     const record = await model.findOne(searchFilter, projection);
-    logger.info("Records have been fetched.");
+    logger.info(
+      "[db_driver_interfaces/mongoose/read_op.js, 'fetchSingleRecord()'] Records have been fetched."
+    );
+    logger.debug(record);
     return record;
   } catch (error) {
-    logger.error("Fetching record has failed.\n" + error);
+    logger.error(
+      "[db_driver_interfaces/mongoose/read_op.js, 'fetchSingleRecord()'] Fetching record has failed.\n" +
+        error
+    );
+    logger.debug(error);
     return undefined;
   }
 };
@@ -37,10 +51,17 @@ const fetchSingleRecord = async (model, searchFilter, projection = "") => {
 const fetchMultipleRecords = async (model, searchFilter, projection = "") => {
   try {
     const records = await model.find(searchFilter, projection);
-    logger.info("All records has been fetched.");
+    logger.info(
+      "[db_driver_interfaces/mongoose/read_op.js, 'fetchMultipleRecordByID()'] All records has been fetched."
+    );
+    logger.debug(records);
     return records;
   } catch (error) {
-    logger.error("Fetching all records have failed.\n" + error);
+    logger.error(
+      "[db_driver_interfaces/mongoose/read_op.js, 'fetchMultipleRecord()'] Fetching all records have failed.\n" +
+        error
+    );
+    logger.debug(error);
     return undefined;
   }
 };

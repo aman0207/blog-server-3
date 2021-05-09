@@ -10,10 +10,17 @@ const updateSingleRecordByID = async (model, ID, newData) => {
     const updatedRecord = await model.findByIdAndUpdate(ID, newData, {
       new: true,
     });
-    logger.info("Record has been updated.");
+    logger.info(
+      "[db_driver_interfaces/mongoose/update_op.js, updateSingleRecordByID()'] Record has been updated."
+    );
+    logger.debug(updatedRecord);
     return updatedRecord;
   } catch (error) {
-    logger.error("Record update has failed.\n" + error);
+    logger.error(
+      "[db_driver_interfaces/mongoose/update_op.js, updateSingleRecordByID()'] Record update has failed.\n" +
+        error
+    );
+    logger.debug(error);
     return undefined;
   }
 };
@@ -28,10 +35,17 @@ const updateSingleRecord = async (model, searchFilter, newData) => {
     const updatedRecord = await model.findOneAndUpdate(searchFilter, newData, {
       new: true,
     });
-    logger.info("Record has been updated.");
+    logger.info(
+      "[db_driver_interfaces/mongoose/update_op.js, updateSingleRecord()'] Record has been updated."
+    );
+    logger.debug(updatedRecord);
     return updatedRecord;
   } catch (error) {
-    logger.error("Record update has failed.\n" + error);
+    logger.error(
+      "[db_driver_interfaces/mongoose/update_op.js, updateSingleRecord()'] Record update has failed.\n" +
+        error
+    );
+    logger.debug(error);
     return undefined;
   }
 };
@@ -46,10 +60,17 @@ const updateMultipleRecords = async (model, searchFilter, newData) => {
     const updatedRecord = await model.updateMany(searchFilter, newData, {
       new: true,
     });
-    logger.info("All records have been updated.");
+    logger.info(
+      "[db_driver_interfaces/mongoose/update_op.js, updateMultipleRecord()'] All records have been updated."
+    );
+    logger.debug(updatedRecord);
     return updatedRecord;
   } catch (error) {
-    logger.error("Updating all records failed.\n" + error);
+    logger.error(
+      "[db_driver_interfaces/mongoose/update_op.js, updateMultipleRecord()'] Updating all records failed.\n" +
+        error
+    );
+    logger.debug(error);
     return undefined;
   }
 };
