@@ -1,15 +1,18 @@
 import logger from "./logger";
-import appConfig from "../common/config";
+// import appConfig from "../common/config";
 
 function generateMongoConnectionURL() {
-  if (process.env.DB_SERVER === "cloud") {
+  if (process.env.dev.DB_SERVER === "cloud") {
     const atlas =
       "mongodb+srv://" +
-      appConfig.database.user +
+      // appConfig.database.user +
+      process.env.dev.DB_USER +
       ":" +
-      appConfig.database.password +
+      // appConfig.database.password +
+      process.env.dev.DB_PASSWORD +
       "@cluster0.3wtac.mongodb.net/" +
-      appConfig.database.name +
+      // appConfig.database.name +
+      process.env.dev.DB_NAME +
       "?retryWrites=true&w=majority";
 
     logger.info(
@@ -22,10 +25,10 @@ function generateMongoConnectionURL() {
     logger.info(
       "[utils/functions, 'generateMongoConnectionURL()'] URL for local database server is generated."
     );
-    logger.debug(appConfig.connection.local);
+    logger.debug(process.env.dev.MONGO_URL);
 
     // returns local connection URL (or use 'default' local URL)
-    return appConfig.connection.local || "mongodb://localhost:27017/testDB";
+    return process.env.dev.MONGO_URL || "mongodb://localhost:27017/testDB";
   }
 }
 
