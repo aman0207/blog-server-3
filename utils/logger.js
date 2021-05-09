@@ -1,4 +1,4 @@
-const { createLogger, transports, format } = require("winston");
+import { createLogger, transports, format } from "winston";
 
 // log configurations.
 const logConfiguration = {
@@ -32,7 +32,6 @@ const logConfiguration = {
       level: "error",
       filename: "logs/errors.log", // Contains logs of error and higher priority.
       format: format.combine(
-        format.colorize(),
         format.timestamp({ format: "DD MMM,YYYY HH:mm:ss" }),
         format.align(),
         format.printf(
