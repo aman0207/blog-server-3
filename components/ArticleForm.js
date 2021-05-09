@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 
 // App components
 import TagInput from "../components/tagInput/TagInputView";
+import { Input, InputLabel } from "@material-ui/core";
 //import RichTextEditor from "../components/richTextEditor/RichTextEditor";
 const RichTextEditor = dynamic(
   () => import("../components/richTextEditor/RichTextEditor"),
@@ -106,6 +107,40 @@ export default function ArticleForm() {
     }));
   };
 
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  const updateFileField = async (event) => {
+    const fieldValue = event.target.value;
+    const fieldName = event.target.name;
+    console.info("updateFileField :: fieldName" + fieldName);
+    console.info("updateFileField :: fieldValue" + fieldValue);
+    console.info(
+      "updateFileField :: files : length : " + event.target.files?.length
+    );
+    let base64 = "";
+    if (event.target.files?.length > 0) {
+      const file = event.target.files[0];
+      base64 = await convertBase64(file);
+    }
+
+    console.log(base64);
+    setArticleBody((prevState) => ({
+      ...prevState,
+      titleImage: base64,
+    }));
+  };
+
   function updateTextField(event) {
     const fieldValue = event.target.value;
     const fieldName = event.target.name;
@@ -152,6 +187,16 @@ export default function ArticleForm() {
           onChange={updateTextField}
           fullWidth
           className={style.nominalVerticalMargin}
+        />
+        <InputLabel>Title Image</InputLabel>
+        <Input
+          accept="image/*"
+          type="file"
+          name="titleImage"
+          onChange={updateFileField}
+          placeholder="Title Image"
+          label="Title Image"
+          fullWidth
         />
 
         {/* AUTHOR OF THE ARTICLE */}

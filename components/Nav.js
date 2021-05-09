@@ -63,12 +63,12 @@ const Nav = ({ changeTheme, darkMode }) => {
             <Link href="/">
               <Button className={classes.margin}>Home</Button>
             </Link>
-            <Link href="/test">
+            <Link href="/articles">
               <Button size="large" className={classes.margin}>
                 Short Stories
               </Button>
             </Link>
-            <Link href="/article">
+            <Link href="/articles">
               <Button size="large" className={classes.margin}>
                 Articles
               </Button>
@@ -78,19 +78,9 @@ const Nav = ({ changeTheme, darkMode }) => {
                 About Us
               </Button>
             </Link>
-            <Link href="/">
+            <Link href="/about">
               <Button size="large" className={classes.margin}>
                 Book
-              </Button>
-            </Link>
-            <Link href="/textEditor">
-              <Button size="large" className={classes.margin}>
-                Text Editor
-              </Button>
-            </Link>
-            <Link href="/textViewer">
-              <Button size="large" className={classes.margin}>
-                Text Viewer
               </Button>
             </Link>
             <Link href="/newArticle">

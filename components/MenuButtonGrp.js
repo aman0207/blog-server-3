@@ -63,12 +63,12 @@ const MenuButtonGrp = ({ changeTheme, darkMode }) => {
             Home
           </Button>
         </Link>
-        <Link href="/">
+        <Link href="/articles">
           <Button size="large" className={classes.margin}>
             Short Stories
           </Button>
         </Link>
-        <Link href="/article">
+        <Link href="/articles">
           <Button size="large" className={classes.margin}>
             Articles
           </Button>
@@ -78,14 +78,9 @@ const MenuButtonGrp = ({ changeTheme, darkMode }) => {
             About Us
           </Button>
         </Link>
-        <Link href="/">
+        <Link href="/about">
           <Button size="large" className={classes.margin}>
             Book
-          </Button>
-        </Link>
-        <Link href="/textEditor">
-          <Button size="large" className={classes.margin}>
-            Text Editor
           </Button>
         </Link>
         <IconButton
@@ -94,9 +89,9 @@ const MenuButtonGrp = ({ changeTheme, darkMode }) => {
           title="Toggle Light/Dark Theme"
         >
           {darkMode ? (
-            <Brightness4Sharp fontSize="large" />
+            <Brightness4Sharp fontSize="default" />
           ) : (
-            <Brightness7Sharp fontSize="large" />
+            <Brightness7Sharp fontSize="default" />
           )}
         </IconButton>
       </AccordionDetails>

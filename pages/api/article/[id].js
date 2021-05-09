@@ -14,7 +14,7 @@ export default async function requestHandler(request, response) {
   logger.debug("ID: " + id);
 
   const outputFields =
-    "title author date category tags body createdOn updatedOn";
+    "title author date category tags body createdOn updatedOn titleImage";
 
   switch (request.method) {
     case REQUEST.GET:
