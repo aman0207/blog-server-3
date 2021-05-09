@@ -1,4 +1,4 @@
-const logger = require("../../utils/logger");
+import logger from "../../utils/logger";
 
 // 'model' is a MONGOOSE model of the collection on which UPDATE op is performed.
 // 'ID' is unique identifier value via which record is searched.
