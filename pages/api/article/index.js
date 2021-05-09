@@ -1,4 +1,3 @@
-import getTextEditorData1 from "../../../components/TestTextEditorData";
 import dbConnect from "../../../utils/dbConnect";
 import Article from "../../../models/Article";
 
@@ -31,8 +30,4 @@ export default async function handler(req, resp) {
     default:
       resp.status(400).json({ success: false });
   }
-  //resp.status(200).json({ data: "Hello World" });
-  // const data = getTextEditorData1();
-  // console.log("data : " + JSON.stringify(data));
-  // resp.status(200).json(data);
 }

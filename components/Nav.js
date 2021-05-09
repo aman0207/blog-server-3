@@ -83,16 +83,6 @@ const Nav = ({ changeTheme, darkMode }) => {
                 Book
               </Button>
             </Link>
-            <Link href="/textEditor">
-              <Button size="large" className={classes.margin}>
-                Text Editor
-              </Button>
-            </Link>
-            <Link href="/textViewer">
-              <Button size="large" className={classes.margin}>
-                Text Viewer
-              </Button>
-            </Link>
             <Link href="/newArticle">
               <Button size="large" className={classes.margin}>
                 New Article

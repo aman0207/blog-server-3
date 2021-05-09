@@ -83,11 +83,6 @@ const MenuButtonGrp = ({ changeTheme, darkMode }) => {
             Book
           </Button>
         </Link>
-        <Link href="/textEditor">
-          <Button size="large" className={classes.margin}>
-            Text Editor
-          </Button>
-        </Link>
         <IconButton
           onClick={() => changeTheme(!darkMode)}
           className={classes.margin}
