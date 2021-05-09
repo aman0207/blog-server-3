@@ -31,10 +31,21 @@ export const ArticleModel = (props) => {
             {title}
           </Typography>
           <Typography component="p" variant="body2">
-            {dateUpdated} by {author}
+            {dateUpdated
+              ? new Date(dateUpdated).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              : ""}{" "}
+            by {author}
           </Typography>
 
-          <Typography component="p" variant="body1" className="mildSpacingAtTop">
+          <Typography
+            component="p"
+            variant="body1"
+            className="mildSpacingAtTop"
+          >
             {summary}
           </Typography>
         </CardContent>

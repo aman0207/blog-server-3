@@ -38,7 +38,7 @@ export default function Home() {
         <link rel="icon" href="/sample-logo.jpeg"></link>
       </Head>
       <Paper>
-        <Grid container spacing={0}>
+        <Grid container spacing={2}>
           {arr.map((item) => {
             return (
               <Grid item xs={12} sm={6} md={4} key={item}>

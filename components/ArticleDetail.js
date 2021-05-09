@@ -1,4 +1,4 @@
-import { Container, makeStyles, Paper } from "@material-ui/core";
+import { Container, makeStyles, Paper, Typography } from "@material-ui/core";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -18,35 +18,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ArticleDetail = () => {
+const ArticleDetail = ({ article }) => {
   const styles = useStyles();
   return (
     <Container>
       <Paper variant="outlined" square className={styles.blogContainer}>
         <Paper className={styles.blogInnerContainer}>
-          <Image src="/sample1.jpg" alt="Image" width={350} height={350} />
-          <h1>Benefits of Repetition</h1>
-          <h3>
-            April 5, 2021 by <Link href="/about">Shikar</Link>
-          </h3>
-          <p>
-            As a school kid, I used to write quotations on the cover page of our
-            notebook, while starting a new chapter. One of those was:
-          </p>
-          <blockquote>
-            <p className="styles.quotePara">“Practice makes a man perfect.”</p>
-          </blockquote>
-          <p>
-            It is only consistency in our life that makes us successful. We
-            cannot even dream about getting success if we are not consistent in
-            what we do. Consistency plays a salient role in our life. One can
-            notice that the most consistent people live the most satisfactory
-            lives. So, being consistent means being repetitive in what we do. In
-            another post, I had already discussed about repetition. Now, let us
-            talk about some of the benefits of repetition. If we practice the
-            right thing in the right manner, then all the ways to zenith are
-            ours.
-          </p>
+          {/* <Image src="/sample1.jpg" alt="Image" width={350} height={350} /> */}
+          <Typography component="h3" variant="h3">
+            {article.data.title}
+          </Typography>
+          <Typography component="h6" variant="h6">
+            {article.data.createdOn
+              ? new Date(article.data.createdOn).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })
+              : ""}{" "}
+            by <Link href="/about">{article.data.author}</Link>
+          </Typography>
+          {article.data.titleImage && (
+            <Image
+              src={article.data.titleImage}
+              alt="Picture of the Article"
+              width={350}
+              height={350}
+              unoptimized
+            />
+          )}
+          <div dangerouslySetInnerHTML={{ __html: article.data.body }} />
+          <Typography children={article.data.body} />
+          <h1>HELP ME Please</h1>
         </Paper>
       </Paper>
     </Container>
