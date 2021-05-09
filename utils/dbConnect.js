@@ -1,21 +1,14 @@
 import mongoose from "mongoose";
-import DotENV from "dotenv";
-
-import { getConfigFilePath } from "../utils/functions";
 import logger from "../utils/logger";
+import { generateMongoConnectionURL } from "../utils/functions";
 
-// configuring the environment variables.
-DotENV.config({ path: getConfigFilePath() });
 const connection = {};
 
 async function dbConnect() {
   if (connection.isConnected) return;
-  logger.debug(
-    "[utils/dbConnect.js, 'dbConnect()'] DB connection URL : " +
-      process.env.MONGO_URL
-  );
 
-  const db = await mongoose.connect(process.env.MONGO_URL, {
+  const URL = generateMongoConnectionURL();
+  const db = await mongoose.connect(URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

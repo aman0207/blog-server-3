@@ -1,16 +1,33 @@
-const getConfigFilePath = () => {
-    if (process.env.NODE_ENV === "production") return ".env";
-    else return ".env.dev";
-  };
+import logger from "./logger";
+import appConfig from "../common/config";
 
-// exports.getServerConfigurations = () => {
-//     return {
-//         port: process.env.port,
-//         connectionURL: process.env.connectionURL,
-//         databseName: process.env.database,
-//         personCollection: process.env.personCollection,
-//     };
-// }
+function generateMongoConnectionURL() {
+  if (process.env.DB_SERVER === "cloud") {
+    const atlas =
+      "mongodb+srv://" +
+      appConfig.database.user +
+      ":" +
+      appConfig.database.password +
+      "@cluster0.3wtac.mongodb.net/" +
+      appConfig.database.name +
+      "?retryWrites=true&w=majority";
+
+    logger.info(
+      "[utils/functions, 'generateMongoConnectionURL()'] URL for cloud database server is generated."
+    );
+    logger.debug(atlas);
+
+    return atlas;
+  } else {
+    logger.info(
+      "[utils/functions, 'generateMongoConnectionURL()'] URL for local database server is generated."
+    );
+    logger.debug(appConfig.connection.local);
+
+    // returns local connection URL (or use 'default' local URL)
+    return appConfig.connection.local || "mongodb://localhost:27017/testDB";
+  }
+}
 
 const removeArrayElement = (array, element) => {
   let newArray = [];
@@ -23,4 +40,4 @@ const removeArrayElement = (array, element) => {
   return newArray;
 };
 
-export { getConfigFilePath, removeArrayElement };
+export { generateMongoConnectionURL, removeArrayElement };
