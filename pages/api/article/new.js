@@ -1,24 +1,24 @@
 import Article from "../../../models/Article";
-import { createNewRecord } from "../../../db_driver_interfaces/mongoose/create_op";
 import dbConnect from "../../../utils/dbConnect";
+import logger from "../../../utils/logger";
+import { createNewRecord } from "../../../db_driver_interfaces/mongoose/create_op";
 
+// Establishing connection (ONLY if it isn't already).
 dbConnect();
 
-// For fetching, updating, (rarely) deleting a specific Article based on its ID.
+// For creating a new Article ONLY.
 export default async function requestHandler(request, response) {
-  try {
-    console.log("NEW request started");
-    const newArticleData = request.body;
-    console.log("NEW request body", newArticleData);
+  const newArticleData = request.body;
+  logger.debug("Request Body: " + newArticleData);
 
-    //const newArticle = new Article(newArticleData);
-    //const articleDetails = await createNewRecord(newArticle);
-    const articleDetails = await Article.create(request.body);
-    console.log("DEV articleDetails :", articleDetails);
-    if (articleDetails)
-      response.status(200).json({ success: true, data: articleDetails });
-  } catch (error) {
-    console.error("NEW Req error ", error);
-    response.status(503).json({ success: false, data: error });
+  // creating new document of type Article.
+  const newArticle = new Article(newArticleData);
+  const articleDetails = await createNewRecord(newArticle);
+
+  if (articleDetails) {
+    logger.debug("Article Created: " + articleDetails);
+    response.status(200).json({ success: true, data: articleDetails });
+  } else {
+    response.status(503).json({ success: false });
   }
 }
