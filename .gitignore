@@ -21,6 +21,7 @@
 # environment variable files
 .env
 .env.*
+next.config.js
 
 # misc
 .DS_Store
