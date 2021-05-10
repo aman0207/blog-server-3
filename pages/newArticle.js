@@ -4,7 +4,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Hidden from "@material-ui/core/Hidden";
 
-import ArticleForm from "../components/ArticleForm";
+import ArticleForm from "../components/articleForm/ArticleForm";
 import { Paper } from "@material-ui/core";
 
 const NewArticlePage = () => {
