@@ -1,6 +1,3 @@
-import logger from "./logger";
-// import appConfig from "../common/config";
-
 function generateMongoConnectionURL() {
   if (process.env.dev.DB_SERVER === "cloud") {
     const atlas =
@@ -15,17 +12,17 @@ function generateMongoConnectionURL() {
       process.env.dev.DB_NAME +
       "?retryWrites=true&w=majority";
 
-    logger.info(
+    console.info(
       "[utils/functions, 'generateMongoConnectionURL()'] URL for cloud database server is generated."
     );
-    logger.debug(atlas);
+    console.debug(atlas);
 
     return atlas;
   } else {
-    logger.info(
+    console.info(
       "[utils/functions, 'generateMongoConnectionURL()'] URL for local database server is generated."
     );
-    logger.debug(process.env.dev.MONGO_URL);
+    console.debug(process.env.dev.MONGO_URL);
 
     // returns local connection URL (or use 'default' local URL)
     return process.env.dev.MONGO_URL || "mongodb://localhost:27017/testDB";

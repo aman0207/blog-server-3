@@ -1,4 +1,3 @@
-import logger from "../../../utils/logger";
 import dbConnect from "../../../utils/dbConnect";
 import Article from "../../../models/Article";
 import { REQUEST } from "../../../common/variables";
@@ -12,23 +11,23 @@ export default async function handler(req, resp) {
       try {
         const articles = await Article.find({});
         resp.status(200).json({ success: true, data: articles });
-        logger.info("[pages/api/article/index.js, 'handler()'] Articles found");
-        logger.debug(articles);
+        console.info("[pages/api/article/index.js, 'handler()'] Articles found");
+        console.debug(articles);
       } catch (error) {
-        logger.error("[pages/api/article/index.js, 'handler()'] Error finding Articles");
-        logger.debug(error);
+        console.error("[pages/api/article/index.js, 'handler()'] Error finding Articles");
+        console.debug(error);
         resp.status(400).json({ success: false });
       }
       break;
     case REQUEST.POST:
       try {
-        logger.debug("Request body: " + JSON.stringify(req.body));
+        console.debug("Request body: " + JSON.stringify(req.body));
         const article = await Article.create(req.body);
         resp.status(200).json({ success: true, data: article });
-        logger.info("[pages/api/article/index.js, 'handler()'] Articles Created");
+        console.info("[pages/api/article/index.js, 'handler()'] Articles Created");
       } catch (error) {
-        logger.error("[pages/api/article/index.js, 'handler()'] Articles Creation Failed");
-        logger.debug("Error: " + error);
+        console.error("[pages/api/article/index.js, 'handler()'] Articles Creation Failed");
+        console.debug("Error: " + error);
         resp.status(400).json({ success: false });
       }
       break;

@@ -1,22 +1,20 @@
-import logger from "../../utils/logger";
-
 // 'model' is a MONGOOSE model of the collection on which DELETE op is performed.
 // 'ID' is unique identifier value via which record is searched.
 // returns 'undefined' on failure so that it can be gracefully handled by frontend.
 const deleteSingleRecordByID = async (model, ID) => {
   try {
     const result = await model.findByIdAndDelete(ID);
-    logger.info(
+    console.info(
       "[db_driver_interfaces/mongoose/delete_op.js, 'deleteSingleRecordByID()'] Record has been deleted."
     );
-    logger.debug(results);
+    console.debug(results);
     return result;
   } catch (error) {
-    logger.error(
+    console.error(
       "[db_driver_interfaces/mongoose/delete_op.js, 'deleteSingleRecordByID()'] Record deletion has failed.\n" +
         error
     );
-    logger.debug(error);
+    console.debug(error);
     return undefined;
   }
 };
@@ -27,17 +25,17 @@ const deleteSingleRecordByID = async (model, ID) => {
 const deleteSingleRecord = async (model, searchFilter) => {
   try {
     const result = await model.deleteOne(searchFilter);
-    logger.info(
+    console.info(
       "[db_driver_interfaces/mongoose/delete_op.js, 'deleteSingleRecord()'] Record has been deleted."
     );
-    logger.debug(results);
+    console.debug(results);
     return result;
   } catch (error) {
-    logger.error(
+    console.error(
       "[db_driver_interfaces/mongoose/delete_op.js, 'deleteSingleRecord()'] Record deletion has failed.\n" +
         error
     );
-    logger.debug(error);
+    console.debug(error);
     return undefined;
   }
 };
@@ -48,16 +46,16 @@ const deleteSingleRecord = async (model, searchFilter) => {
 const deleteMultipleRecords = async (model, searchFilter) => {
   try {
     const results = await model.deleteMany(searchFilter);
-    logger.info(
+    console.info(
       "[db_driver_interfaces/mongoose/delete_op.js, 'deleteMany()'] All results has been deleted."
     );
-    logger.debug(results);
+    console.debug(results);
     return results;
   } catch (error) {
-    logger.error(
+    console.error(
       "[delete_op.js, 'deleteMany()'] All results deletion failed.\n" + error
     );
-    logger.debug(error);
+    console.debug(error);
     return undefined;
   }
 };

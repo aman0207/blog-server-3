@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import logger from "../utils/logger";
 import { generateMongoConnectionURL } from "../utils/functions";
 
 const connection = {};
@@ -15,7 +14,7 @@ async function dbConnect() {
     useFindAndModify: false,
   });
   connection.isConnected = db.connections[0].readyState;
-  logger.info(
+  console.info(
     "[utils/dbConnect.js, 'dbConnect()'] DB isConnected: " +
       connection.isConnected
       ? "true"

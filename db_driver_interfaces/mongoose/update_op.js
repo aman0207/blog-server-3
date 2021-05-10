@@ -1,5 +1,3 @@
-import logger from "../../utils/logger";
-
 // 'model' is a MONGOOSE model of the collection on which UPDATE op is performed.
 // 'ID' is unique identifier value via which record is searched.
 // 'newData' are the properties (key-value maps) which would be updated in the record.
@@ -10,17 +8,17 @@ const updateSingleRecordByID = async (model, ID, newData) => {
     const updatedRecord = await model.findByIdAndUpdate(ID, newData, {
       new: true,
     });
-    logger.info(
+    console.info(
       "[db_driver_interfaces/mongoose/update_op.js, updateSingleRecordByID()'] Record has been updated."
     );
-    logger.debug(updatedRecord);
+    console.debug(updatedRecord);
     return updatedRecord;
   } catch (error) {
-    logger.error(
+    console.error(
       "[db_driver_interfaces/mongoose/update_op.js, updateSingleRecordByID()'] Record update has failed.\n" +
         error
     );
-    logger.debug(error);
+    console.debug(error);
     return undefined;
   }
 };
@@ -35,17 +33,17 @@ const updateSingleRecord = async (model, searchFilter, newData) => {
     const updatedRecord = await model.findOneAndUpdate(searchFilter, newData, {
       new: true,
     });
-    logger.info(
+    console.info(
       "[db_driver_interfaces/mongoose/update_op.js, updateSingleRecord()'] Record has been updated."
     );
-    logger.debug(updatedRecord);
+    console.debug(updatedRecord);
     return updatedRecord;
   } catch (error) {
-    logger.error(
+    console.error(
       "[db_driver_interfaces/mongoose/update_op.js, updateSingleRecord()'] Record update has failed.\n" +
         error
     );
-    logger.debug(error);
+    console.debug(error);
     return undefined;
   }
 };
@@ -60,17 +58,17 @@ const updateMultipleRecords = async (model, searchFilter, newData) => {
     const updatedRecord = await model.updateMany(searchFilter, newData, {
       new: true,
     });
-    logger.info(
+    console.info(
       "[db_driver_interfaces/mongoose/update_op.js, updateMultipleRecord()'] All records have been updated."
     );
-    logger.debug(updatedRecord);
+    console.debug(updatedRecord);
     return updatedRecord;
   } catch (error) {
-    logger.error(
+    console.error(
       "[db_driver_interfaces/mongoose/update_op.js, updateMultipleRecord()'] Updating all records failed.\n" +
         error
     );
-    logger.debug(error);
+    console.debug(error);
     return undefined;
   }
 };

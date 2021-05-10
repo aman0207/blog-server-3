@@ -1,5 +1,3 @@
-import logger from "../../utils/logger";
-
 // 'model' is the model of the collection for which READ op is performed.
 // 'ID' is unique identifier value via which record is searched.
 // 'projection' is (optional) list of the fields of the records that is to be fetched.
@@ -7,17 +5,17 @@ import logger from "../../utils/logger";
 const fetchSingleRecordByID = async (model, ID, projection = "") => {
   try {
     const record = await model.findById(ID, projection);
-    logger.info(
+    console.info(
       "[db_driver_interfaces/mongoose/read_op.js, 'fetchSingleRecordByID()'] Record has been fetched."
     );
-    logger.debug(record);
+    console.debug(record);
     return record;
   } catch (error) {
-    logger.error(
+    console.error(
       "[db_driver_interfaces/mongoose/read_op.js, 'fetchSingleRecordByID()'] Fetching record has failed.\n" +
         error
     );
-    logger.debug(error);
+    console.debug(error);
     return undefined;
   }
 };
@@ -29,17 +27,17 @@ const fetchSingleRecordByID = async (model, ID, projection = "") => {
 const fetchSingleRecord = async (model, searchFilter, projection = "") => {
   try {
     const record = await model.findOne(searchFilter, projection);
-    logger.info(
+    console.info(
       "[db_driver_interfaces/mongoose/read_op.js, 'fetchSingleRecord()'] Records have been fetched."
     );
-    logger.debug(record);
+    console.debug(record);
     return record;
   } catch (error) {
-    logger.error(
+    console.error(
       "[db_driver_interfaces/mongoose/read_op.js, 'fetchSingleRecord()'] Fetching record has failed.\n" +
         error
     );
-    logger.debug(error);
+    console.debug(error);
     return undefined;
   }
 };
@@ -51,17 +49,17 @@ const fetchSingleRecord = async (model, searchFilter, projection = "") => {
 const fetchMultipleRecords = async (model, searchFilter, projection = "") => {
   try {
     const records = await model.find(searchFilter, projection);
-    logger.info(
+    console.info(
       "[db_driver_interfaces/mongoose/read_op.js, 'fetchMultipleRecordByID()'] All records has been fetched."
     );
-    logger.debug(records);
+    console.debug(records);
     return records;
   } catch (error) {
-    logger.error(
+    console.error(
       "[db_driver_interfaces/mongoose/read_op.js, 'fetchMultipleRecord()'] Fetching all records have failed.\n" +
         error
     );
-    logger.debug(error);
+    console.debug(error);
     return undefined;
   }
 };
